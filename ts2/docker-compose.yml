@@ -1,0 +1,20 @@
+services:
+  timescale:
+    container_name: ts2
+    image: timescale/timescaledb-ha:pg16
+    shm_size: 1g
+    restart: always
+    env_file:
+      - ./.env
+    networks:
+      - tsdb
+    ports:
+      - "54323:5432"
+    volumes:
+     - ts2-data:/home/postgres/pgdata/data
+volumes:
+  ts2-data:
+
+networks:
+  tsdb:
+    name: ts2

@@ -1,0 +1,20 @@
+services:
+  postgres:
+    container_name: pg
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=pg
+      - POSTGRES_PASSWORD=pg
+    networks:
+      - ignition
+    ports:
+      - "54321:5432"
+    volumes:
+     - pg-alpine:/var/lib/postgresql/data
+volumes:
+  pg-alpine:
+
+networks:
+  ignition:
+    name: ignition
